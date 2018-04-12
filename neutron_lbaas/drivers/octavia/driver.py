@@ -429,7 +429,8 @@ class MemberManager(driver_base.BaseMemberManager):
         args = {
             'enabled': member.admin_state_up,
             'protocol_port': member.protocol_port,
-            'weight': member.weight
+            'weight': member.weight,
+            'backup': member.backup
         }
         if not create:
             return args
@@ -447,11 +448,13 @@ class MemberManager(driver_base.BaseMemberManager):
     @async_op
     def create(self, context, member):
         args = self._construct_args(member)
+        LOG.debug("Octavia request create member args: {0}".format(args))
         self.driver.req.post(self._url(member), args)
 
     @async_op
     def update(self, context, old_member, member):
         args = self._construct_args(member, create=False)
+        LOG.debug("Octavia request update member args: {0}".format(args))
         self.driver.req.put(self._url(member, member.id), args)
 
     @async_op

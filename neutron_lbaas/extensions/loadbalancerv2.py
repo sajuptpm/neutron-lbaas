@@ -396,6 +396,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                      'validate': {'type:string': db_const.NAME_FIELD_SIZE},
                      'default': '',
                      'is_visible': True},
+            'backup': {'allow_post': True, 'allow_put': True,
+                               'default': False,
+                               'convert_to': converters.convert_to_boolean,
+                               'is_visible': True},
         }
     }
 }

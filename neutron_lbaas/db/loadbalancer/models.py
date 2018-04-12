@@ -87,6 +87,7 @@ class MemberV2(model_base.BASEV2, model_base.HasId, model_base.HasProject):
     provisioning_status = sa.Column(sa.String(16), nullable=False)
     operating_status = sa.Column(sa.String(16), nullable=False)
     name = sa.Column(sa.String(db_const.NAME_FIELD_SIZE), nullable=True)
+    backup = sa.Column(sa.Boolean(), default=False, nullable=False)
 
     @property
     def root_loadbalancer(self):

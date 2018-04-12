@@ -761,6 +761,7 @@ class LoadBalancerPluginv2(loadbalancerv2.LoadBalancerPluginBaseV2,
                                     db_pool.root_loadbalancer.id,
                                     constants.PENDING_UPDATE)
         try:
+            #db op
             member_db = self.db.create_pool_member(context, member, pool_id)
         except Exception as exc:
             self.db.update_loadbalancer_provisioning_status(
@@ -769,6 +770,7 @@ class LoadBalancerPluginv2(loadbalancerv2.LoadBalancerPluginBaseV2,
 
         driver = self._get_driver_for_loadbalancer(
             context, member_db.pool.loadbalancer_id)
+        #driver op
         self._call_driver_operation(context,
                                     driver.member.create,
                                     member_db)

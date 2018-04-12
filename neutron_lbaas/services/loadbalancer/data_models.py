@@ -479,12 +479,12 @@ class Member(BaseDataModel):
 
     fields = ['id', 'tenant_id', 'pool_id', 'address', 'protocol_port',
               'weight', 'admin_state_up', 'subnet_id', 'operating_status',
-              'provisioning_status', 'pool', 'name']
+              'provisioning_status', 'pool', 'name', 'backup']
 
     def __init__(self, id=None, tenant_id=None, pool_id=None, address=None,
                  protocol_port=None, weight=None, admin_state_up=None,
                  subnet_id=None, operating_status=None,
-                 provisioning_status=None, pool=None, name=None):
+                 provisioning_status=None, pool=None, name=None, backup=False):
         self.id = id
         self.tenant_id = tenant_id
         self.pool_id = pool_id
@@ -497,6 +497,7 @@ class Member(BaseDataModel):
         self.provisioning_status = provisioning_status
         self.pool = pool
         self.name = name
+        self.backup = backup
 
     def attached_to_loadbalancer(self):
         return bool(self.pool and self.pool.loadbalancer)
